@@ -8,7 +8,7 @@ const storagePath = path.join(homeDir, "Folders");
 
 const Service = {
   async createFileInGivenDirectory(req, res) {
-    try {
+    // try {
       // //querystring is deprecated
       // let queryStr = req.url.split("?")[1];
       // let params =  querystring.parse(queryStr);
@@ -26,13 +26,14 @@ const Service = {
       await fs.promises.access(path.join(storagePath,folderName));
       }
       catch {
-        await fs.mkdir(path.join(storagePath,folderName), (err) => {
+        await fs.mkdir(path.join(storagePath, folderName), {recursive: true}, (err) => {
           if(err) {
             console.log(err);
           }
         })
       }
-      let fileName = dateTime.replaceAll(":", "")+".txt";
+      // let fileName = dateTime.replaceAll(":", "")+".txt";
+      let fileName = dateTime.replace(/:/g, '') +".txt";
       console.log(path.join(storagePath, folderName, fileName))
       fs.writeFile(path.join(storagePath, folderName, fileName), dateTime, (err) => {
         if(err) { 
@@ -41,9 +42,9 @@ const Service = {
         } 
         res.send({ success: { message: "File created successfully." } });
       });
-    } catch(err) {
-      console.error(err);
-    }
+    // } catch(err) {
+    //   console.error(err);
+    // }
   }, 
   async getFilesFromGivenDirectory(req, res) {
     try {
