@@ -2,7 +2,7 @@ var fs = require('fs');
 var path = require('path');
 // const querystring = require('querystring');
 
-const currDirectory = __dirname;
+const currDirectoryPath = __dirname;
 const homeDir = path.dirname(currDirectoryPath);
 const storagePath = path.join(homeDir, "Folders");
 
