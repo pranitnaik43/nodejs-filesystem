@@ -2,9 +2,8 @@ var fs = require('fs');
 var path = require('path');
 // const querystring = require('querystring');
 
-const currDirectoryPath = __dirname;
-const homeDir = path.dirname(currDirectoryPath);
-const storagePath = path.join(homeDir, "Folders");
+const currDirectory = __dirname;
+const storagePath = path.join(currDirectory, "Folders");
 
 const Service = {
   async createFileInGivenDirectory(req, res) {
